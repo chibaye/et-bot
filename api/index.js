@@ -1,4 +1,3 @@
-export default (req, res) => {
-  res.statusCode = 200
-  res.json({ name: 'John Doe' })
+module.exports = (req, res) => {
+  res.send({message: process.env.BASE_URL})
 }
