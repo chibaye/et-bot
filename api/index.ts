@@ -1,4 +1,4 @@
-import Receipts from '@/controllers/receipts'
+import Receipts from '../src/controllers/receipts'
 
 export default (req, res) => {
     switch (req.method) {

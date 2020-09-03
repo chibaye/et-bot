@@ -1,4 +1,4 @@
-import ReceiptService from '@/services/receipt'
+import ReceiptService from '../services/receipt'
 
 export default {
     get: async (req, res) => {
