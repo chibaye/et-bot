@@ -1,5 +1,5 @@
 export default {
     get: async () => {
-        return [{name: 'mike'}, {name: 'joe'}, {name: 'peter'}]
+        return process.env.NRFA_URL
     }
 }
