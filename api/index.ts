@@ -1,3 +1,11 @@
+import Receipts from '@/controllers/receipts'
+
 export default (req, res) => {
-    res.status(200).send({message: 'TESTING 1,2'})
+    switch (req.method) {
+        case 'GET':
+            return Receipts.get(req, res)
+        default:
+            res.setHeader('Allow', ['GET'])
+            res.status(405).end(`Method ${req.method} Not Allowed`)
+    }
 }

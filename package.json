@@ -2,5 +2,11 @@
   "name": "et-bot",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "chrome-aws-lambda": "^5.2.1",
+    "puppeteer-core": "^5.2.1"
+  },
+  "devDependencies": {
+    "puppeteer": "^5.2.1"
+  }
 }
