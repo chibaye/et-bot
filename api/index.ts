@@ -1,11 +1,16 @@
-import Receipts from '../src/controllers/receipts'
+// @ts-ignore
+import chrome from 'chrome-aws-lambda'
 
-export default (req, res) => {
-    switch (req.method) {
-        case 'GET':
-            return Receipts.get(req, res)
-        default:
-            res.setHeader('Allow', ['GET'])
-            res.status(405).end(`Method ${req.method} Not Allowed`)
-    }
+const launch = async () => {
+    const browser = await chrome.puppeteer.launch({
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        defaultViewport: chrome.defaultViewport,
+        headless: chrome.headless
+    })
+    const page = await browser.newPage()
+    await page.goto('https://gozambiajobs.com/')
 }
+
+launch()
+console.log('CALLED')
