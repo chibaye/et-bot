@@ -37,6 +37,7 @@ const toJSON = (keys, items) => new Promise(async (resolve, reject) => {
 export default async (req: NowRequest, res: NowResponse) => {
     try {
         let browser = null
+        let result = null
         let took = null
 
         try {
@@ -50,7 +51,7 @@ export default async (req: NowRequest, res: NowResponse) => {
             const start = Date.now()
 
             const page = await browser.newPage()
-            await page.setDefaultNavigationTimeout(0)
+            // await page.setDefaultNavigationTimeout(0)
             await page.setRequestInterception(true)
             page.on('request', request => {
                 if (request.resourceType().match(/image|stylesheet|font/) || request.url().match(/merchants\/home|sweetalert|ico|image|datepicker|select|blockui|simple/))
@@ -85,7 +86,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
             const headers = await getContent(page, 'table thead tr th')
             const data = await getData(page)
-            const result = await toJSON(headers, data)
+            result = await toJSON(headers, data)
             await axios.post(ETRA_URL, result)
             took = Date.now() - start
         } catch (error) {
@@ -96,7 +97,7 @@ export default async (req: NowRequest, res: NowResponse) => {
             }
         }
 
-        res.send({message: `Transaction Completed Successfully! Took: ${took}ms` })
+        res.send({message: `Transaction Completed Successfully! Took: ${took}ms`, data: result })
     } catch (e) {
         console.error(e)
         res.status(500).send({error: 'Something went wrong, try again'})
