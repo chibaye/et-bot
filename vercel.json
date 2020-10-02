@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/receipts.ts": {
+      "maxDuration": 9
+    }
+  }
+}
