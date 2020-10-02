@@ -74,7 +74,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
             await page.$eval('#from-date', el => {
                 const date = new Date()
-                date.setDate(date.getDate() - 1)
+                // date.setDate(date.getDate() - 1)
                 return el.value = date.toDateString()
             })
 
